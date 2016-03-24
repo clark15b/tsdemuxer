@@ -88,7 +88,8 @@ namespace ts
             aac_audio           = 8,
             svc_video           = 9,
             mvc_video           = 10,
-            mjpeg_video         = 11
+            mjpeg_video         = 11,
+            hevc_video          = 12
         };
     }
 
