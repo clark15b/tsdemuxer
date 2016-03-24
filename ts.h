@@ -84,7 +84,11 @@ namespace ts
             ac3_audio           = 4,
             mpeg2_audio         = 5,
             lpcm_audio          = 6,
-            dts_audio           = 7
+            dts_audio           = 7,
+            aac_audio           = 8,
+            svc_video           = 9,
+            mvc_video           = 10,
+            mjpeg_video         = 11
         };
     }
 
@@ -119,6 +123,7 @@ namespace ts
                                                 // 0x03,0x04            - MPEG2 audio
                                                 // 0x80                 - LPCM  audio
                                                 // 0x82,0x86,0x8a       - DTS   audio
+                                                // 0x0f                 - AAC   audio
 
         table psi;                              // PAT,PMT cache (only for PSI streams)
 

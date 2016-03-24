@@ -241,7 +241,7 @@ int main(int argc,char** argv)
         fprintf(stderr,"-e dump TS structure to STDOUT (mode=1: dump M2TS timecodes, mode=2: dump PTS/DTS, mode=3: human readable PTS/DTS dump)\n");
         fprintf(stderr,"-v turn on verbose output\n");
         fprintf(stderr,"\ninput files can be *.m2ts, *.mts or *.ts\n");
-        fprintf(stderr,"output elementary streams to *.sup, *.m2v, *.264, *.vc1, *.ac3, *.m2a and *.pcm files\n");
+        fprintf(stderr,"output elementary streams to *.sup, *.m2v, *.264, *.vc1, *.ac3, *.m2a, *.aac and *.pcm files\n");
         fprintf(stderr,"\n");
         return 0;
     }

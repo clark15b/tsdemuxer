@@ -190,7 +190,7 @@ int ts::file::read(char* p,int l)
 bool ts::demuxer::validate_type(u_int8_t type)
 {
     if(av_only)
-        return strchr("\x01\x02\x80\x1b\xea\x81\x06\x83\x03\x04\x82\x86\x8a",type)?true:false;
+        return strchr("\x01\x02\x80\x10\x1b\xea\x1f\x20\x21\x03\x04\x11\x1c\x0f\x81\x06\x83\x82\x86\x8a",type)?true:false;
 
     return true;
 }
@@ -201,6 +201,7 @@ int ts::demuxer::get_stream_type(u_int8_t type)
     {
     case 0x01:
     case 0x02:
+    case 0x10:
         return stream_type::mpeg2_video;
     case 0x80:
         return hdmv?stream_type::lpcm_audio:stream_type::mpeg2_video;
@@ -208,6 +209,12 @@ int ts::demuxer::get_stream_type(u_int8_t type)
         return stream_type::h264_video;
     case 0xea:
         return stream_type::vc1_video;
+    case 0x1f:
+        return stream_type::svc_video;
+    case 0x20:
+        return stream_type::mvc_video;
+    case 0x21:
+        return stream_type::mjpeg_video;
     case 0x81:
     case 0x06:
     case 0x83:
@@ -219,15 +226,19 @@ int ts::demuxer::get_stream_type(u_int8_t type)
     case 0x86:
     case 0x8a:
         return stream_type::dts_audio;
+    case 0x11:
+    case 0x1c:
+    case 0x0f:
+        return stream_type::aac_audio;
     }
     return stream_type::data;
 }
 
 const char* ts::demuxer::get_stream_ext(u_int8_t type_id)
 {
-    static const char* list[8]= { "sup", "m2v", "264", "vc1", "ac3", "m2a", "pcm", "dts" };
+    static const char* list[12]= { "sup", "m2v", "264", "vc1", "ac3", "m2a", "pcm", "dts", "aac", "svc", "mvc", "mjpg" };
 
-    if(type_id<0 || type_id>=8)
+    if(type_id<0 || type_id>=12)
         type_id=0;
 
     return list[type_id];
